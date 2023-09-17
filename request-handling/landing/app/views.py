@@ -20,7 +20,13 @@ def landing(request):
     # в зависимости от GET параметра ab-test-arg
     # который может принимать значения original и test
     # Так же реализуйте логику подсчета количества показов
-    return render(request, 'landing.html')
+    template_requested = request.GET['ab-test-arg']
+    if template_requested == 'test':
+        sutable_template = 'landing_alternate.html'
+    else:
+        sutable_template = 'landing.html'
+
+    return render(request, sutable_template)
 
 
 def stats(request):
