@@ -10,8 +10,10 @@ counter_show = Counter()
 counter_click = Counter()
 
 
+
 def index(request):
     # Реализуйте логику подсчета количества переходов с лендига по GET параметру from-landing
+
     return render(request, 'index.html')
 
 
@@ -23,9 +25,11 @@ def landing(request):
     template_requested = request.GET['ab-test-arg']
     if template_requested == 'test':
         sutable_template = 'landing_alternate.html'
+        counter_show.update('t')
     else:
         sutable_template = 'landing.html'
-
+        counter_show.update('o')
+    print(counter_show)
     return render(request, sutable_template)
 
 
